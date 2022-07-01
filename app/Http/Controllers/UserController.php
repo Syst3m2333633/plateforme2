@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Devis;
 use App\Models\Facture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,8 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        //return view('user.create', compact('clients'));
+        $clients = User::all();
+        return view('user.index', compact('clients'));
     }
 
     /**
@@ -56,7 +57,16 @@ class UserController extends Controller
         // $repo->move(storage_path('public/' .$user->name = $request->name), $repoName);
 
         $user->name = $request->name;
+        $user->firstname = $request->firstname;
         $user->email = $request->email;
+        $user->raisonSocial = $request->raisonSocial;
+        $user->adresse = $request->adresse;
+        $user->complAdresse = $request->complAdresse;
+        $user->codePostal = $request->codePostal;
+        $user->ville = $request->ville;
+        $user->pays = $request->pays;
+        $user->telephone = $request->telephone;
+
         $user->password = Hash::make($request->password);
         $user->save();
         return view('user.create', compact('clients'));//, compact('clients')
@@ -81,7 +91,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $clients = User::all();
+        return view('user.create', compact('clients'));//, compact('clients
     }
 
     /**
@@ -93,7 +104,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'raisonSocial' => $request->raisonSocial,
+                'adresse' => $request->adresse,
+                'codePostal' => $request->codePostal,
+                'ville' => $request->ville,
+                'pays' => $request->pays,
+                'email' => $request->email,
+                'telephone' => $request->telephone,
+                'name' => $request->name,
+                'firstname' => $request->firstname,
+            ], ['email', 'password', 'raisonSocial', 'adresse', 'codePostal', 'ville', 'pays', 'telephone', 'name', 'firstname']);
     }
 
     /**

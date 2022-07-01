@@ -8,9 +8,65 @@
                 <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data" id="image-upload">
                     @csrf
                     <div class="mb-3">
+                        <input type="text" class="form-control  @error('raisonSocial') is-invalid @enderror" name="raisonSocial"
+                            id="raisonSocial" placeholder="raisonSocial" value="{{ old('raisonSocial') }}">
+                        @error('raisonSocial')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  @error('adresse') is-invalid @enderror" name="adresse"
+                            id="adresse" placeholder="adresse" value="{{ old('adresse') }}">
+                        @error('adresse')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  @error('complAdresse') is-invalid @enderror" name="complAdresse"
+                            id="complAdresse" placeholder="complAdresse" value="{{ old('complAdresse') }}">
+                        @error('complAdresse')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control  @error('codePostal') is-invalid @enderror" name="codePostal"
+                            id="codePostal" placeholder="35430" value="{{ old('codePostal') }}">
+                        @error('codePostal')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  @error('ville') is-invalid @enderror" name="ville"
+                            id="ville" placeholder="ville" value="{{ old('ville') }}">
+                        @error('ville')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  @error('pays') is-invalid @enderror" name="pays"
+                            id="pays" placeholder="pays" value="{{ old('pays') }}">
+                        @error('pays')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  @error('telephone') is-invalid @enderror" name="telephone"
+                            id="telephone" placeholder="telephone" value="{{ old('telephone') }}">
+                        @error('telephone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
                         <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name"
                             id="name" placeholder="name" value="{{ old('name') }}">
                         @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  @error('firstname') is-invalid @enderror" name="firstname"
+                            id="firstname" placeholder="firstname" value="{{ old('firstname') }}">
+                        @error('firstname')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -36,20 +92,5 @@
             </div>
         </div>
     </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>nom</th><th>email</th><th>password</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($clients as $client)
-            <tr>
-                <td>{{ $client->name }}</td><td>{{ $client->email }}</td><td>{{ $client->password }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
 
 @endsection
