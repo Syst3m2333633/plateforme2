@@ -34,7 +34,7 @@ class UserController extends Controller
         $clients = User::all();
         //$user = new User();
 
-        return view('user.create', compact('clients'));//, compact('clients')
+        return view('user.edit');//'user.create', compact('clients')
     }
 
     /**
